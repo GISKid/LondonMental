@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>Map of London Resources</title>
+	    <meta charset="utf-8" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+	   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	   crossorigin=""/>
+
+	   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
+	   <style>
+		   	body, h1,p {
+		   		font-family: 'Open Sans', sans-serif;
+		   	}
+		   	body {
+		   		background-color: #CDE;
+		   	}
+
+		   	.wrapper{
+		   		width: 960px;
+		   		margin: 0 auto;
+		   	}
+	   </style>
+	</head>
+<body>
+	<div class="wrapper">
+		<!-- Add some description here-->
+	 	<h1> Map of London Resources</h1>
+	 	<p> This map is showing the locations of xyz.  Click on the points on the map to view information about the resources in this area! </p>
+	    <div id="map" style="width: 960px; height: 600px"></div>
+
+	</div>    
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+	   integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+	   crossorigin=""></script>
+	<script>
+		//The first half before the comma is the description for the points, followed by the coordinates from google maps
+		var planes = [
+				["<b> Mental Health Center</b><br> This is a new line. <br> (519) 955-7555",42.971,-81.255],
+				["<b>Service</b><br> alpha omega <br> test 123 <br> another line",42.971,-81.284],
+				["<b>Hi Layla </b><br> alpha omega <br> test 123 <br> ss",42.971,-81.211],
+				["<b>Lizzo</b><br> I just took a DNA TEST <br> turns out <br> I'm 100%",42.992,-81.236]
+				];
+		//this is the centre of the map, it can be changed to move the focus of the map
+		        var map = L.map('map').setView([42.9707751, -81.2523415], 13);
+		        mapLink = 
+		            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+		        L.tileLayer(
+		            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		            attribution: '&copy; ' + mapLink + ' Contributors',
+		            maxZoom: 18,
+		            }).addTo(map);
+
+				for (var i = 0; i < planes.length; i++) {
+					marker = new L.marker([planes[i][1],planes[i][2]])
+						.bindPopup(planes[i][0])
+						.addTo(map);
+				}
+		               
+		    </script>
+</body>
+</html>   
